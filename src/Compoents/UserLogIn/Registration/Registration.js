@@ -1,5 +1,6 @@
 import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import logo from '../../../Images/Logo/logo.png'
 import { Link } from 'react-router-dom';
 import useFirebase from '../../../Hooks/useFirebase';
 import './Registration.css'
@@ -16,7 +17,11 @@ const Registration = () => {
     }
 
     const handelRegisterFrom = (event) => {
-        registerUser(register.email, register.password, register.name)
+        if (register.password !== register.password2) {
+            alert('Password are in valid')
+            return;
+        }
+        registerUser(register.email, register.password)
         event.preventDefault()
     }
     return (
@@ -25,7 +30,7 @@ const Registration = () => {
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
                         <form onSubmit={handelRegisterFrom} className='register-form'>
-                            <Box sx={{ mb: 7 }} class='active-link'>
+                            <Box sx={{ mb: 7 }} className='active-link'>
                                 <Link to='/login'>
                                     <Button variant="contained" sx={{ width: '50%', backgroundColor: 'black', borderRadius: 0, color: 'green', padding: 2, fontWeight: 600 }} >SIGN IN</Button>
                                 </Link>
@@ -41,7 +46,6 @@ const Registration = () => {
                             </Typography>
 
                             <TextField
-                                id="outlined-basic"
                                 sx={{ m: 1 }}
                                 label="First Name"
                                 type='text'
@@ -50,7 +54,6 @@ const Registration = () => {
                                 variant="outlined"
                             />
                             <TextField
-                                id="outlined-basic"
                                 sx={{ m: 1 }}
                                 label="Phone Number"
                                 type='number'
@@ -59,7 +62,6 @@ const Registration = () => {
                                 variant="outlined"
                             />
                             <TextField
-                                id="outlined-basic"
                                 sx={{ m: 1 }}
                                 type='date'
                                 name='date'
@@ -67,7 +69,6 @@ const Registration = () => {
                                 variant="outlined"
                             />
                             <TextField
-                                id="outlined-basic"
                                 sx={{ m: 1 }}
                                 label="Gender"
                                 type='text'
@@ -76,7 +77,6 @@ const Registration = () => {
                                 variant="outlined"
                             />
                             <TextField
-                                id="outlined-basic"
                                 sx={{ m: 1, width: '75%' }}
                                 label="Email"
                                 type='email'
@@ -85,7 +85,7 @@ const Registration = () => {
                                 variant="outlined"
                             />
                             <TextField
-                                id="outlined-basic"
+
                                 sx={{ m: 1 }}
                                 label="Password"
                                 type='password'
@@ -94,11 +94,11 @@ const Registration = () => {
                                 variant="outlined"
                             />
                             <TextField
-                                id="outlined-basic"
+
                                 sx={{ m: 1 }}
                                 label="Confirm Password"
                                 type='password'
-                                name='password'
+                                name='password2'
                                 onBlur={handelOnBlur}
                                 variant="outlined"
                             />
@@ -108,7 +108,19 @@ const Registration = () => {
 
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <img src='' alt="" style={{ width: '500px' }} />
+                        <img src={logo} alt="" style={{ width: '200px', marginTop: "100px" }} />
+                        <Typography variant='body2'>Shaping Tomorrow's Cybersecurity</Typography>
+                        <Box sx={{ mt: 15 }}>
+                            <Typography variant='h5' sx={{ fontWeight: 600 }}>
+                                Welcome to TechForing
+                            </Typography>
+                            <Typography variant='body1' sx={{ fontWeight: 600, lineHeight: 2 }}>
+                                An applicant can register only once
+                            </Typography>
+                            <Typography variant='body2'>
+                                Register applicant,please login with credentials bt entering email and password
+                            </Typography>
+                        </Box>
                     </Grid>
                 </Grid>
             </Box>
