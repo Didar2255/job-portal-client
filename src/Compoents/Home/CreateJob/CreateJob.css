@@ -1,0 +1,17 @@
+.added-jobs{
+    display: flex;
+    flex-direction: column;
+}
+.added-jobs input,select,textarea{
+    width: 50%;
+    margin: 10px;
+    padding: 8px;
+}
+.job-field{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.job-field label{
+    margin-right: 30px;
+}
