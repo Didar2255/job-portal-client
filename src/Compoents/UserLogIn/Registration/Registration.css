@@ -1,4 +1,8 @@
 .register-form{
     border: 1px solid gray;
     padding:0px 0px 60px 0px;
+    box-shadow: 2px 2px 2px 2px solid black;
+}
+.active-link a{
+    text-decoration: none;
 }
