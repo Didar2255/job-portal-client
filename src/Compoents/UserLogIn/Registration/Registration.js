@@ -2,12 +2,12 @@ import { Box, Button, Container, Grid, TextField, Typography } from '@mui/materi
 import React, { useState } from 'react';
 import logo from '../../../Images/Logo/logo.png'
 import { Link } from 'react-router-dom';
-import useFirebase from '../../../Hooks/useFirebase';
 import './Registration.css'
+import useAuth from '../../../Hooks/useAuth';
 
 const Registration = () => {
     const [register, setRegister] = useState({})
-    const { registerUser } = useFirebase()
+    const { registerUser } = useAuth()
     const handelOnBlur = (event) => {
         const field = event.target.name;
         const value = event.target.value;

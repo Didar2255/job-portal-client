@@ -1,13 +1,12 @@
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
-import useFirebase from '../../../Hooks/useFirebase';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 
 const Navbar = () => {
-    const { user, handelSignOut } = useFirebase()
+    const { user, handelSignOut } = useAuth()
 
     return (
         <Box sx={{ flexGrow: 1 }}>
