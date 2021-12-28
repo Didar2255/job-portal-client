@@ -1,13 +1,15 @@
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../../Images/Logo/logo.png'
 import './Login.css'
 import useAuth from '../../../Hooks/useAuth';
 
 const Login = () => {
     const [userLogIn, setUserLogIn] = useState({})
+    const location = useLocation()
+    const navigate = useNavigate()
     const { logInProcess } = useAuth()
 
     const handelOnBlur = (event) => {
@@ -18,7 +20,7 @@ const Login = () => {
         setUserLogIn(logInData)
     }
     const submitFrom = (e) => {
-        logInProcess(userLogIn.email, userLogIn.password)
+        logInProcess(userLogIn.email, userLogIn.password, location, navigate)
         e.preventDefault()
     }
     return (

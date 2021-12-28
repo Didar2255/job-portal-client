@@ -26,12 +26,12 @@ const Navbar = () => {
                     </Typography>
                     <NavLink style={{ textDecoration: 'none', color: 'white', marginRight: '20px', fontWeight: 600 }} to='/home'>Home</NavLink>
                     <NavLink style={{ textDecoration: 'none', color: 'white', marginRight: '20px', fontWeight: 600 }} to='/createJob'>Create Job</NavLink>
+                    {user?.email && <span>{user.displayName}</span>}
                     {
                         user?.email ?
                             <NavLink style={{ textDecoration: 'none', color: 'white', marginRight: '20px' }} onClick={handelSignOut} to='/login'>
                                 Log-out
                             </NavLink>
-
                             :
                             <NavLink style={{ textDecoration: 'none', color: 'white', marginRight: '20px', fontWeight: 600 }} to='/login'>
                                 Log-in

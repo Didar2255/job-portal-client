@@ -1,13 +1,17 @@
 import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import logo from '../../../Images/Logo/logo.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Registration.css'
 import useAuth from '../../../Hooks/useAuth';
 
 const Registration = () => {
     const [register, setRegister] = useState({})
     const { registerUser } = useAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
+
+
     const handelOnBlur = (event) => {
         const field = event.target.name;
         const value = event.target.value;
@@ -21,7 +25,7 @@ const Registration = () => {
             alert('Password are in valid')
             return;
         }
-        registerUser(register.email, register.password)
+        registerUser(register.email, register.password, register.name, location, navigate)
         event.preventDefault()
     }
     return (
