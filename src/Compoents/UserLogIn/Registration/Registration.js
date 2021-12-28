@@ -11,7 +11,7 @@ const Registration = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
-
+    console.log(register)
     const handelOnBlur = (event) => {
         const field = event.target.name;
         const value = event.target.value;
@@ -19,15 +19,23 @@ const Registration = () => {
         registerData[field] = value;
         setRegister(registerData)
     }
-
     const handelRegisterFrom = (event) => {
         if (register.password !== register.password2) {
             alert('Password are in valid')
             return;
         }
         registerUser(register.email, register.password, register.name, location, navigate)
-        event.preventDefault()
+        event.preventDefault();
     }
+    fetch('http://localhost:5000/users', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(register)
+    })
+        .then(res => res.json())
+        .then(data => console.log(data))
     return (
         <Container sx={{ m: 8 }}>
             <Box sx={{ flexGrow: 1 }}>
@@ -67,7 +75,8 @@ const Registration = () => {
                             />
                             <TextField
                                 sx={{ m: 1 }}
-                                type='date'
+                                label='Date oF Birth'
+                                type='text'
                                 name='date'
                                 onBlur={handelOnBlur}
                                 variant="outlined"

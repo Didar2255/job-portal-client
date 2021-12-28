@@ -7,6 +7,7 @@ import './CreateJob.css'
 const CreateJob = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
+        data.status = 'Active'
         fetch('http://localhost:5000/jobs', {
             method: 'POST',
             headers: {
@@ -64,6 +65,14 @@ const CreateJob = () => {
                     <Box className='job-field'>
                         <label>Salary: </label>
                         <input {...register("salary")} />
+                    </Box>
+                    <Box className='job-field'>
+                        <label>Type: </label>
+                        <select {...register("type")}>
+                            <option value="Full Time">Full Time</option>
+                            <option value="Freelancer">Freelancer</option>
+                            <option value="Intern">Intern</option>
+                        </select>
                     </Box>
                     <Box className='job-field'>
                         <label>Filter Question: </label>

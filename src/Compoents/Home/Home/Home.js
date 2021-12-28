@@ -1,14 +1,16 @@
 import { Button, Container, InputLabel, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css'
 
 const Home = () => {
-    const recentJob = [
-        { id: 1, postName: 'Backend Developer', totalApplicant: 10, vacancies: 2, shift: 'Day', type: 'Full Time', postDate: '04.12.2021', expireDate: '04.12.2021', salary: 'Negotiable', status: 'Active' },
-        { id: 2, postName: 'Creative Director', totalApplicant: 20, vacancies: 1, shift: 'Day', type: 'Freelancer', postDate: '04.12.2021', expireDate: '04.12.2021', salary: 'Upto 30k', status: 'Active' },
-        { id: 1, postName: 'Frontend Developer', totalApplicant: 30, vacancies: 1, shift: 'Day', type: 'Intern', postDate: '04.12.2021', expireDate: '04.12.2021', salary: 'Negotiable', status: 'Expired' },
-    ]
+    const [recentJobs, setRecentJobs] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/allJobs')
+            .then(res => res.json())
+            .then(data => setRecentJobs(data))
+    }, [])
     return (
         <Container>
             <Box sx={{
@@ -69,7 +71,10 @@ const Home = () => {
                     </Select>
                 </Box>
                 <Box>
-                    <Button variant="contained" sx={{ mt: 4, backgroundColor: '#5bbc2e', borderRadius: 0, px: 4 }}>Filter</Button>
+                    <Button variant="contained" sx={{ m: 4, backgroundColor: '#5bbc2e', borderRadius: 0, px: 4 }}>Filter</Button>
+                    <a href="/createJob">
+                        <Button variant="contained" sx={{ m: 4, backgroundColor: '#5bbc2e', borderRadius: 0, px: 4 }}><i class="fas fa-plus-circle plus-icon"></i>  Create Jobs</Button>
+                    </a>
                 </Box>
             </Box>
             <Box>
@@ -82,33 +87,29 @@ const Home = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="left">Post Name</TableCell>
-                            <TableCell align="left">Total Applicant</TableCell>
                             <TableCell align="left">Vacancies</TableCell>
+                            <TableCell align="left">Shift</TableCell>
                             <TableCell align="left">Type</TableCell>
-                            <TableCell align="left">Post Date</TableCell>
-                            <TableCell align="left">Expire Date</TableCell>
                             <TableCell align="left">Salary</TableCell>
                             <TableCell align="left">Status</TableCell>
-                            <TableCell align="left">Action</TableCell>
+                            <TableCell align="center">Action</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {recentJob.map((job) => (
+                        {recentJobs.map((job) => (
                             <TableRow
                                 key={job.id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {job.postName}
+                                    {job.jobTitle}
                                 </TableCell>
-                                <TableCell align="left">{job.totalApplicant}</TableCell>
-                                <TableCell align="left">{job.vacancies}</TableCell>
+                                <TableCell align="left">{job.vacancy}</TableCell>
                                 <TableCell align="left">{job.shift}</TableCell>
-                                <TableCell align="left">{job.postDate}</TableCell>
-                                <TableCell align="left">{job.expireDate}</TableCell>
+                                <TableCell align="left">{job.type}</TableCell>
                                 <TableCell align="left">{job.salary}</TableCell>
                                 <TableCell align="left">{job.status}</TableCell>
-                                <TableCell align="left"><i class="fas fa-pencil-alt edit-icon"></i> <i class="fas fa-trash-alt delete-icon"></i></TableCell>
+                                <TableCell align="center"><i class="fas fa-pencil-alt edit-icon"></i> <i class="fas fa-trash-alt delete-icon"></i> <Link to={`/home/${job._id}`}><Button><i class="far fa-eye view-job"></i></Button></Link></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

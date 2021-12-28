@@ -7,6 +7,7 @@ import Navbar from './Compoents/Share/NavBar/Navbar';
 import CreateJob from './Compoents/Home/CreateJob/CreateJob';
 import AuthProvider from './Compoents/AuthProvider/AuthProvider';
 import PrivetRoute from './Compoents/PrivetRoute/PrivetRoute';
+import ViewJob from './Compoents/Home/ViewJob/ViewJob';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Routes>
             <Route path='/' element={<PrivetRoute><Home /></PrivetRoute>} />
             <Route path='/home' element={<PrivetRoute><Home /></PrivetRoute>} />
-            <Route path='createJob' element={<PrivetRoute><CreateJob /></PrivetRoute>} />
+            <Route path='/home/:id' element={<PrivetRoute><ViewJob /></PrivetRoute>} />
+            <Route path='/createJob' element={<PrivetRoute><CreateJob /></PrivetRoute>} />
             <Route path='/login' element={<Login />} />
             <Route path='/registration' element={<Registration />} />
           </Routes>

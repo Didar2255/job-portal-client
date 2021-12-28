@@ -6,8 +6,19 @@
 .delete-icon{
     color: #db0909;
     font-size: 16px;
+    margin-right: 10px;
+}
+.view-job{
+    color: #076dcf;
+    font-size: 16px;
 }
 
-.edit-icon,.delete-icon:hover{
+.edit-icon,.delete-icon,.view-job:hover{
     cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
+.plus-icon{
+    margin-right: 10px;
 }
