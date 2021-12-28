@@ -1,0 +1,13 @@
+.edit-icon{
+    color: #479324;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.delete-icon{
+    color: #db0909;
+    font-size: 16px;
+}
+
+.edit-icon,.delete-icon:hover{
+    cursor: pointer;
+}
