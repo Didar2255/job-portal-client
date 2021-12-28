@@ -72,9 +72,9 @@ const Home = () => {
                 </Box>
                 <Box>
                     <Button variant="contained" sx={{ m: 4, backgroundColor: '#5bbc2e', borderRadius: 0, px: 4 }}>Filter</Button>
-                    <a href="/createJob">
+                    <Link to='/createJob'>
                         <Button variant="contained" sx={{ m: 4, backgroundColor: '#5bbc2e', borderRadius: 0, px: 4 }}><i class="fas fa-plus-circle plus-icon"></i>  Create Jobs</Button>
-                    </a>
+                    </Link>
                 </Box>
             </Box>
             <Box>
