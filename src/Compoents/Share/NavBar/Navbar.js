@@ -25,7 +25,6 @@ const Navbar = () => {
                         TechForing
                     </Typography>
                     <NavLink style={{ textDecoration: 'none', color: 'white', marginRight: '20px', fontWeight: 600 }} to='/home'>Home</NavLink>
-                    <NavLink style={{ textDecoration: 'none', color: 'white', marginRight: '20px', fontWeight: 600 }} to='/createJob'>Create Job</NavLink>
                     {user?.email && <span>{user.displayName}</span>}
                     {
                         user?.email ?

@@ -6,11 +6,28 @@ import './Home.css'
 
 const Home = () => {
     const [recentJobs, setRecentJobs] = useState([])
+    const [isDelete, setIsDelete] = useState(null)
     useEffect(() => {
         fetch('http://localhost:5000/allJobs')
             .then(res => res.json())
             .then(data => setRecentJobs(data))
-    }, [])
+    }, [isDelete]);
+
+    const handelDelete = (id) => {
+        fetch(`http://localhost:5000/jobs/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+                    alert('Are you sure delete jobs ?')
+                    setIsDelete(true)
+                }
+                else {
+                    setIsDelete(false)
+                }
+            })
+    }
     return (
         <Container>
             <Box sx={{
@@ -86,12 +103,12 @@ const Home = () => {
                 <Table aria-label="Appointment table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="left">Post Name</TableCell>
-                            <TableCell align="left">Vacancies</TableCell>
-                            <TableCell align="left">Shift</TableCell>
-                            <TableCell align="left">Type</TableCell>
-                            <TableCell align="left">Salary</TableCell>
-                            <TableCell align="left">Status</TableCell>
+                            <TableCell align="center">Post Name</TableCell>
+                            <TableCell align="center">Vacancies</TableCell>
+                            <TableCell align="center">Shift</TableCell>
+                            <TableCell align="center">Type</TableCell>
+                            <TableCell align="center">Salary</TableCell>
+                            <TableCell align="center">Status</TableCell>
                             <TableCell align="center">Action</TableCell>
                         </TableRow>
                     </TableHead>
@@ -104,12 +121,12 @@ const Home = () => {
                                 <TableCell component="th" scope="row">
                                     {job.jobTitle}
                                 </TableCell>
-                                <TableCell align="left">{job.vacancy}</TableCell>
-                                <TableCell align="left">{job.shift}</TableCell>
-                                <TableCell align="left">{job.type}</TableCell>
-                                <TableCell align="left">{job.salary}</TableCell>
-                                <TableCell align="left">{job.status}</TableCell>
-                                <TableCell align="center"><i class="fas fa-pencil-alt edit-icon"></i> <i class="fas fa-trash-alt delete-icon"></i> <Link to={`/home/${job._id}`}><Button><i class="far fa-eye view-job"></i></Button></Link></TableCell>
+                                <TableCell align="center">{job.vacancy}</TableCell>
+                                <TableCell align="center">{job.shift}</TableCell>
+                                <TableCell align="center">{job.type}</TableCell>
+                                <TableCell align="center">{job.salary}</TableCell>
+                                <TableCell align="center"><Link to={`/update/${job._id}`}><Button variant='contained'>{job.status}</Button></Link></TableCell>
+                                <TableCell align="center"><i class="fas fa-pencil-alt edit-icon"></i> <i class="fas fa-trash-alt delete-icon" onClick={() => handelDelete(`${job._id}`)}></i> <Link to={`/home/${job._id}`}><i class="far fa-eye view-job"></i></Link></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

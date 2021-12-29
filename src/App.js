@@ -8,6 +8,7 @@ import CreateJob from './Compoents/Home/CreateJob/CreateJob';
 import AuthProvider from './Compoents/AuthProvider/AuthProvider';
 import PrivetRoute from './Compoents/PrivetRoute/PrivetRoute';
 import ViewJob from './Compoents/Home/ViewJob/ViewJob';
+import UpdateStatus from './Compoents/UpdateStatus/UpdateStatus';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path='/' element={<PrivetRoute><Home /></PrivetRoute>} />
             <Route path='/home' element={<PrivetRoute><Home /></PrivetRoute>} />
             <Route path='/home/:id' element={<PrivetRoute><ViewJob /></PrivetRoute>} />
+            <Route path='/update/:id' element={<PrivetRoute><UpdateStatus></UpdateStatus></PrivetRoute>} />
             <Route path='/createJob' element={<PrivetRoute><CreateJob /></PrivetRoute>} />
             <Route path='/login' element={<Login />} />
             <Route path='/registration' element={<Registration />} />
